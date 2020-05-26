@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 exports.connectToDB = () => {
     // 这些变量是存储在环境变量中，database 的地址是会变的
     const { DB_HOST, DB_PORT, DB_DATABASE } = process.env;
-    const connectionString = `mongodb://$(DB_HOST):$(DB_PORT)/$(DB_DATABASE)`;
+    const connectionString = `mongodb://${DB_HOST}:${DB_PORT}/${DB_DATABASE}`;
     // const connectionString = 'mongodb://localhost:27017/jr-cms';
 
     const db = mongoose.connection;
@@ -25,5 +25,5 @@ exports.connectToDB = () => {
     });
 
     // 返回 promise 出去
-    return mongoose.connect(connectionString);
+    return mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true});
 };
