@@ -12,6 +12,7 @@ app.get('/', function (req, res) {
   res.send('Hello World');
 })
 
+app.use(express.json());
 app.use('/api', routes);
 
 connectToDB().then(() => {
@@ -19,4 +20,3 @@ connectToDB().then(() => {
         console.log(`server listening on port: ${PORT}`);
     });
 });
- 
