@@ -1,4 +1,5 @@
 // 导入 mongoose model
+const StudentModel = require('../models/student')
 const courseModel = require('../models/course');
 
 async function addCourse(req, res) {
@@ -58,6 +59,10 @@ async function deleteCourse(req, res) {
     if (!deletedCourse) {
         return res.status(404).send('course not found');
     }
+    await StudentModel.updateMany(
+        { courses: course._id}, 
+        { $pull: {courses: course._id} }
+    )
     return res.sendStatus(200);
 }
 

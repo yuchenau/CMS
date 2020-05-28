@@ -22,6 +22,11 @@ const schema = new mongoose.Schema({
     //     type:Boolean,
     //     default:true
     // }
+    // 和 student collection 的关联
+    students: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Student',}
+    ],
     __v: {
         type:Number,
         select:false
