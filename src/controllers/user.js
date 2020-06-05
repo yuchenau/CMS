@@ -13,6 +13,7 @@ async function addUser(req, res){
         username,
         password
     });
+    await user.hashPassword();
     await user.save();
     // 用户注册成功之后生成 token
     const token = generateToken(user._id);

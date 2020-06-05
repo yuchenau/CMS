@@ -7,7 +7,8 @@ async function loginUser(req, res){
     if (!existingUser) {
         return res.status(400).send('Invalid username or password');
     }
-    if (existingUser.password !== password) {
+    const validPassword = await existingUser.validatePassword(password);
+    if (!validPassword) {
         // 等号反转，错误的情况下直接做返回
         return res.status(400).send('Invalid username or password');
     }
