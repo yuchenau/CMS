@@ -1,1 +1,1 @@
-# CMS-InClass
+# CMS
